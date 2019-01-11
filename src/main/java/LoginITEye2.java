@@ -1,23 +1,11 @@
 import HttpUtil.HttpHelper;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.CookieHandler;
-import java.net.CookieManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,45 +16,28 @@ import java.util.List;
 public class LoginITEye2 {
 
     public static void main(String[] args) throws Exception {
-
-
         String url = "https://www.iteye.com/login";
         HttpHelper httpHelper=new HttpHelper();
 
-
-
         //获取请求登录的页面HTML
         String page=httpHelper.sentGet(url);
-//        String page = iteye.sentGet(url);
-//        System.out.println(page);
 
         //设置登录参数
         LoginITEye2 iteye=new LoginITEye2();
         List<NameValuePair> params = iteye.tranParams(page, "gguava@gmail.com","guavaguava00");
 
         //开始登录
-//        iteye.sendPost(url, params);
         httpHelper.sentPost(url,params);
 
         //打开短信页面
-        page=httpHelper.sentGet("https://my.iteye.com/myresume");
+        //page=httpHelper.sentGet("https://my.iteye.com/myresume");
 
 
         page=httpHelper.sentGet("https://guava.iteye.com/admin/blogs/new");
         params = iteye.tranParams2(page);
         url="https://guava.iteye.com/admin/blogs";
         httpHelper.sentPost(url,params);
-//        String addnews = iteye.sentGet("https://guava.iteye.com/admin/blogs/new");
-//        System.out.println("---------- 请发表原创文章-----------");
-//        System.out.println(addnews);
-//
-//        params = iteye.tranParams2(addnews);
-//        iteye.sendPost("https://guava.iteye.com/admin/blogs", params);
-//
-//
-//        String itEyePage = iteye.sentGet("https://my.iteye.com/messages");
-//        System.out.println("----------可以从itEyePage打印里面看到welcome欢迎***。表示登录成功.-----------");
-//        System.out.println(itEyePage);
+
     }
 
 
