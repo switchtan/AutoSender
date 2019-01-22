@@ -1,3 +1,5 @@
+package test;
+
 import HttpUtil.HttpHelper;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;

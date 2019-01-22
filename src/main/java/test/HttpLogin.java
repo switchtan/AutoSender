@@ -1,3 +1,5 @@
+package test;
+
 import org.apache.http.Consts;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.CookieStore;

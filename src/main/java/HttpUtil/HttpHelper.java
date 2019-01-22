@@ -39,6 +39,9 @@ public class HttpHelper {
 
         res = null;
     }
+    public void setCookie(BasicCookieStore cookie){
+        context.setCookieStore(cookie);
+    }
     public String sentGet(String url) throws IOException {
         HttpGet get = new HttpGet(url);
 
@@ -49,6 +52,7 @@ public class HttpHelper {
         for (Cookie c : cookieStore.getCookies()) {
             System.out.println(c.getName() + ": " + c.getValue());
         }
+
         String contentLogin = EntityUtils.toString(res.getEntity());
         System.out.println(contentLogin);
         res.close();
