@@ -23,13 +23,18 @@ public class SeleniumUtil {
         }
     }
     public void warpTimeOut(WebDriver driver,int timeout,String url){
-        (new WebDriverWait(driver, timeout)).until(new ExpectedCondition<Boolean>() {
+        try {
+            (new WebDriverWait(driver, timeout)).until(new ExpectedCondition<Boolean>() {
 
-            @Override
-            public Boolean apply(WebDriver d) {
-                boolean returnValue=false;
-                return waittingFor(driver,url);
-            } });
+                @Override
+                public Boolean apply(WebDriver d) {
+                    boolean returnValue = false;
+                    return waittingFor(driver, url);
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
     //org.openqa.selenium.Cookie
     public BasicCookieStore CookieSet(Set<Cookie> ss){

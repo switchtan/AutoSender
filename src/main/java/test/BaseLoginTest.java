@@ -1,18 +1,8 @@
 package test;
 
-import HttpUtil.HttpHelper;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-import sites.BaseLogin;
+import sites.BaseSite;
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 模仿登录iTeye
@@ -43,10 +33,11 @@ public class BaseLoginTest {
 
 
 
-        BaseLogin baseLogin=new BaseLogin("https://passport.mtime.com/member/signin","loginEmailText"
+        BaseSite baseLogin=new BaseSite("https://passport.mtime.com/member/signin","http://www.mtime.com/","loginEmailText"
                 ,"loginPasswordText","loginButton"
         ,"13326511991","guavaguava00");
-        baseLogin.postMessage("http://movie.mtime.com/246986/","","真的引人深思的电影啊");
+        baseLogin.postMessage("http://movie.mtime.com/246986/"
+                ,"tweetBoxUp","真的引人深思的电影啊","tweetButtonUp");
 
 
     }
