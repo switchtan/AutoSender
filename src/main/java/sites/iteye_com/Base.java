@@ -15,14 +15,5 @@ public class Base extends BaseSite {
     public void test(){
 
     }
-    public void findPostUrl(){
-        Document doc= Jsoup.parse(this.pageSource);
-        //System.out.println(this.pageSource);
-        Elements newsHeadlines = doc.select(".login-fr a");
-        for (Element headline : newsHeadlines) {
-            System.out.println(headline.text()+":"+headline.absUrl("href"));
-            this.postUrl=headline.absUrl("href")+"/admin/blogs/new";
-            break;
-        }
-    }
+
 }

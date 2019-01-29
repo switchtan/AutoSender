@@ -15,7 +15,8 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile 'org.apache.httpcomponents:httpclient:4.5.6'
     compile 'org.jsoup:jsoup:1.11.3'
-    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    compile 'com.alibaba:fastjson:1.2.55'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+    compile fileTree(dir:'lib',includes:['*jar'])
 
 }

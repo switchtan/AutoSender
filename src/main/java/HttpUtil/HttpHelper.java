@@ -42,19 +42,25 @@ public class HttpHelper {
     public void setCookie(BasicCookieStore cookie){
         context.setCookieStore(cookie);
     }
-    public String sentGet(String url) throws IOException {
+    public String sentGet(String url) throws IOException, InterruptedException {
+        Thread.sleep(2500);
         HttpGet get = new HttpGet(url);
 
-        get.setHeader("ser-Agent","Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.26 Safari/537.36");
-        res = httpClient.execute(get, context);
+        get.setHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.26 Safari/537.36");
+        try {
+            res = httpClient.execute(get, context);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         // 获取常用Cookie,包括_xsrf信息
-        System.out.println("访问知乎首页后的获取的常规Cookie:===============");
+        //System.out.println("访问知乎首页后的获取的常规Cookie:===============");
         for (Cookie c : cookieStore.getCookies()) {
-            System.out.println(c.getName() + ": " + c.getValue());
+            //System.out.println(c.getName() + ": " + c.getValue());
         }
 
         String contentLogin = EntityUtils.toString(res.getEntity());
-        System.out.println(contentLogin);
+        //System.out.println(contentLogin);
         res.close();
         return contentLogin;
     }

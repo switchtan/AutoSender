@@ -3,6 +3,10 @@ package sites;
 import HttpUtil.HttpHelper;
 import Selenium.SeleniumUtil;
 import org.apache.http.impl.client.BasicCookieStore;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
@@ -62,6 +66,16 @@ public class BaseSite {
         select.selectByIndex(selectIndex);
         WebElement button2   = driver.findElement(By.id(buttonTag));
         button2.click();
+    }
+    public void findPostUrl(String baseurlTag,String endUrl){
+        Document doc= Jsoup.parse(this.pageSource);
+        //System.out.println(this.pageSource);
+        Elements newsHeadlines = doc.select(baseurlTag);//".login-fr a"
+        for (Element headline : newsHeadlines) {
+            System.out.println(headline.text()+":"+headline.absUrl("href"));
+            this.postUrl=headline.absUrl("href")+endUrl;//"/admin/blogs/new"
+            break;
+        }
     }
     public void upDateCookie(){
         Set<Cookie> ss= driver.manage().getCookies();
